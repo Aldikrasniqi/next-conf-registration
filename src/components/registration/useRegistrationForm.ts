@@ -21,6 +21,8 @@ export default function useRegistrationForm() {
 	const [fileError, setFileError] = useState<string | null>(null)
 	const [selectedImage, setSelectedImage] = useState<string | null>(null)
 	const [githubValue, setGithubValue] = useState('')
+	const [fullNameValue, setFullNameValue] = useState('')
+	const [emailValue, setEmailValue] = useState('')
 
 	const fileInputRef = useRef<HTMLInputElement>(null)
 	const store = useTicketStore()
@@ -51,6 +53,8 @@ export default function useRegistrationForm() {
 		setFileError(null)
 		setSubmitError(null)
 		setGithubValue('')
+		setFullNameValue('')
+		setEmailValue('')
 		if (fileInputRef.current) {
 			fileInputRef.current.value = ''
 		}
@@ -164,6 +168,24 @@ export default function useRegistrationForm() {
 		[setValue]
 	)
 
+	const handleFullNameChange = useCallback(
+		(e: React.ChangeEvent<HTMLInputElement>) => {
+			const value = e.target.value
+			setFullNameValue(value)
+			setValue('fullName', value)
+		},
+		[setValue]
+	)
+
+	const handleEmailChange = useCallback(
+		(e: React.ChangeEvent<HTMLInputElement>) => {
+			const value = e.target.value
+			setEmailValue(value)
+			setValue('email', value)
+		},
+		[setValue]
+	)
+
 	return {
 		register,
 		handleSubmit,
@@ -179,5 +201,9 @@ export default function useRegistrationForm() {
 		handleRemoveImage,
 		githubValue,
 		handleGithubChange,
+		fullNameValue,
+		handleFullNameChange,
+		emailValue,
+		handleEmailChange,
 	}
 }

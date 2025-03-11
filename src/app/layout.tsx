@@ -17,6 +17,14 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
 	title: 'Ticket Generator',
 	description: 'Ticket Generator Conference app made by @aldikrasniqi',
+	icons: {
+		icon: [
+			{ url: '/favicon.ico', sizes: 'any' },
+			{ url: '/images/favicon-32x32.png', sizes: '32x32' },
+		],
+		shortcut: '/images/favicon-32x32.png',
+		apple: '/images/favicon-32x32.png',
+	},
 }
 
 export default function RootLayout({

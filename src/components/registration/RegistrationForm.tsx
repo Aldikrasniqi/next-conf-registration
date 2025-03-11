@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import useRegistrationForm from './useRegistrationForm'
 import {
 	FormField,
+	BlurredFormField,
 	GitHubUsernameInput,
 	AvatarUploadSection,
 	SubmitButton,
@@ -26,6 +27,10 @@ export default function RegistrationForm() {
 		handleRemoveImage,
 		githubValue,
 		handleGithubChange,
+		fullNameValue,
+		handleFullNameChange,
+		emailValue,
+		handleEmailChange,
 	} = useRegistrationForm()
 
 	useEffect(() => {
@@ -51,21 +56,23 @@ export default function RegistrationForm() {
 					fileError={fileError}
 				/>
 
-				<FormField
-					name="fullName"
+				<BlurredFormField
+					id="fullName"
 					label="Full Name"
 					placeholder="John Doe"
-					register={register}
-					errors={errors}
+					value={fullNameValue}
+					onChange={handleFullNameChange}
+					error={errors.fullName?.message as string | undefined}
 				/>
 
-				<FormField
-					name="email"
+				<BlurredFormField
+					id="email"
 					label="Email Address"
 					type="email"
 					placeholder="example@email.com"
-					register={register}
-					errors={errors}
+					value={emailValue}
+					onChange={handleEmailChange}
+					error={errors.email?.message as string | undefined}
 				/>
 
 				<GitHubUsernameInput
